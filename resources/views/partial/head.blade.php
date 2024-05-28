@@ -5,7 +5,7 @@
 <meta content="ThemeDesign" name="author" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/logo_b.png">
 
 <!-- DataTables -->
 <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
