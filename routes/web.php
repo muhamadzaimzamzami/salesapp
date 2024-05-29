@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,12 +17,7 @@ Route::get('/pesanan', function () {
 Route::get('/penjualan', function () {
     return view('admin/sales');
 });
-Route::get('/toko', function () {
-    return view('admin/store');
-});
-Route::get('/produk', function () {
-    return view('admin/product');
-});
-Route::get('/users', function () {
-    return view('admin/userManagement');
-});
+Route::get('/produk', [ProductController::class, 'index']);
+Route::get('/toko', [StoreController::class, 'index']);
+Route::get('/users', [UserController::class, 'index']);
+

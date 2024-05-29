@@ -19,7 +19,63 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Tabel Penjualan</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
+                                cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Toko</th>
+                                        <th>Produk</th>
+                                        <th>Jumlah</th>
+                                        <th>Status</th>
 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Toko A</td>
+                                        <td>Aqua</td>
+                                        <td>3</td>
+                                        <td>Lunas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Toko A</td>
+                                        <td>Aqua</td>
+                                        <td>3</td>
+                                        <td>Lunas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Toko A</td>
+                                        <td>Aqua</td>
+                                        <td>3</td>
+                                        <td>Lunas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Toko A</td>
+                                        <td>Aqua</td>
+                                        <td>3</td>
+                                        <td>Lunas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Toko A</td>
+                                        <td>Aqua</td>
+                                        <td>3</td>
+                                        <td>Lunas</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
 
         </div> <!-- container -->
