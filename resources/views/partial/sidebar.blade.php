@@ -23,6 +23,7 @@
         <!--- Divider -->
         <div id="sidebar-menu">
             <ul>
+                
                 <li>
                     <a href="/" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
                 </li>
@@ -39,7 +40,7 @@
                     <a href="/pesanan" class="waves-effect"><i class="mdi mdi-receipt"></i><span> Pesanan
                         </span></a>
                 </li>
-
+                @if(Auth::user()->level == 1)
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-folder-outline"></i> <span> Master Data
                         </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
@@ -49,6 +50,8 @@
                         <li><a href="/users">Users</a></li>
                     </ul>
                 </li>
+                @endif
+                
             </ul>
         </div>
         <div class="clearfix"></div>

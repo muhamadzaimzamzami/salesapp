@@ -27,7 +27,15 @@
                         <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"> Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="javascript:void(0)"> Logout</a></li>
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <a href="{{ route('logout') }}" 
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
