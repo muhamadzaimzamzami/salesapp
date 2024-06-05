@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('t_order', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('t_product_store', function (Blueprint $table) {
+            $table->integer('id_store');
+            $table->integer('id_product');
+            $table->integer('stock');
+            $table->integer('status');
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        //
     }
 };

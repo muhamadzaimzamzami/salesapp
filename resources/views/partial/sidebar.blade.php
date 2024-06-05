@@ -25,21 +25,33 @@
             <ul>
                 
                 <li>
-                    <a href="/" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
+                    <a href="/dashboard" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
                 </li>
 
                 <li>
                     <a href="/lobi" class="waves-effect"><i class="mdi mdi-exit-to-app"></i><span> Loby
                         </span></a>
                 </li>
+                @if (Auth::user()->level == 3 || Auth::user()->level == 1)
                 <li>
                     <a href="/penjualan" class="waves-effect"><i class="mdi mdi-sale"></i><span> Penjualan
                         </span></a>
                 </li>
+                @endif
+
+                @if (Auth::user()->level == 2 || Auth::user()->level == 1)
                 <li>
                     <a href="/pesanan" class="waves-effect"><i class="mdi mdi-receipt"></i><span> Pesanan
                         </span></a>
                 </li>
+                    @if (session('status') == 1)
+                    <li>
+                        <a href="/produk-toko" class="waves-effect"><i class="mdi mdi-barcode-scan"></i><span> Produk Toko
+                            </span></a>
+                    </li>
+                    @endif
+                @endif
+
                 @if(Auth::user()->level == 1)
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-folder-outline"></i> <span> Master Data

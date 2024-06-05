@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('t_order', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('t_absent', function (Blueprint $table) {
+            $table->text('image')->after('status');
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::table('absent', function (Blueprint $table) {
+            //
+        });
     }
 };

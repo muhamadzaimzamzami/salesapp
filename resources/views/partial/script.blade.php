@@ -19,6 +19,11 @@
 <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
 <script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
 
+<!-- Sweet-Alert  -->
+<script src="assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
+<script src="assets/pages/sweet-alert.init.js"></script>
+
+
 <script src="assets/pages/dashborad.js"></script>
 
 <script src="assets/js/app.js"></script>
