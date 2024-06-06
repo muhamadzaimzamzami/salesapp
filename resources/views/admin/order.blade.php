@@ -29,7 +29,7 @@
                         <div class="panel-body">
                             @if (session('status') == 1)
                                 <div class="row">
-                                    <a href="#" class="btn btn-success">Tambah Pesanan</a>
+                                    <a href="/tambah-pesanan" class="btn btn-success">Tambah Pesanan</a>
                                 </div>
                             @else
                                 <div class="row">
@@ -43,44 +43,41 @@
                                     width="100%">
                                     <thead>
                                         <tr>
-                                            <th>Toko</th>
-                                            <th>Produk</th>
-                                            <th>Jumlah</th>
+                                            <th>Tanggal</th>
+                                            @if (session('status') != 1)
+                                                <th>
+                                                    Toko
+                                                </th>
+                                            @endif
+                                            <th>Total Harga</th>
+                                            <th>Deskripsi</th>
                                             <th>Status</th>
+                                            <th>Aksi</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($order as $data)
                                         <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
+                                            <td>{{ $data->created_at }}</td>
+                                            @if (session('status')!=1)
+                                                <td>{{ $data->name }}</td>
+                                            @endif
+                                            <td>{{ $data->total_price }}</td>
+                                            <td>{{ $data->description }}</td>
+                                            <td>
+                                                @if ($data->status == 1)
+                                                    <span class="btn btn-warning">Diproses</span>
+                                                @else
+                                                    <span class="btn btn-success">Selesai</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="/detail-pesanan/{{$data->id}}" class="btn btn-primary"><span class="mdi mdi-eye"></span></a>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
-                                        </tr>
+                                        @endforeach
+                                        
                                     </tbody>
                                 </table>
                             </div>

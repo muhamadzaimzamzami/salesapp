@@ -24,6 +24,18 @@
 <script src="assets/pages/sweet-alert.init.js"></script>
 
 
+
+<!-- Plugins js -->
+<script src="assets/plugins/timepicker/bootstrap-timepicker.js"></script>
+<script src="assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
+
+<!-- Plugins Init js -->
+<script src="assets/pages/form-advanced.js"></script>
+
 <script src="assets/pages/dashborad.js"></script>
+
 
 <script src="assets/js/app.js"></script>

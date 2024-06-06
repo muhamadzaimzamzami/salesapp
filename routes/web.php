@@ -17,23 +17,32 @@ Route::get('/', [LoginController::class, 'showLoginForm'])->name('loginform');
 
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/lobi', [AbsentController::class, 'index'])->name('lobi');
-        Route::get('/checkin-page', [AbsentController::class, 'checkinpage'])->name('checkinpage');
-        Route::post('/lobi/checkin', [AbsentController::class, 'checkin'])->name('checkin');
-        Route::post('/lobi/chekout', [AbsentController::class, 'checkout'])->name('checkout');
-        Route::get('/pesanan', [OrderController::class, 'index'])->name('pesanan');
-        Route::get('/produk-toko', [OrderController::class, 'storeProduct'])->name('produktoko');
-        Route::get('/penjualan', [SalesController::class, 'index'])->name('penjualan');
-        
 
+    // Absensi
+    Route::get('/lobi', [AbsentController::class, 'index'])->name('lobi');
+    Route::get('/checkin-page', [AbsentController::class, 'checkinpage'])->name('checkinpage');
+    Route::post('/lobi/checkin', [AbsentController::class, 'checkin'])->name('checkin');
+    Route::post('/lobi/chekout', [AbsentController::class, 'checkout'])->name('checkout');
+
+    // Sales TO
+    Route::get('/pesanan', [OrderController::class, 'index'])->name('pesanan');
+    Route::get('/produk-toko', [OrderController::class, 'storeProduct'])->name('produktoko');
+    Route::get('/tambah-pesanan', [OrderController::class, 'addOrder'])->name('tambahpesanan');
+    Route::post('/create-pesanan', [OrderController::class, 'createOrder'])->name('createpesanan');
+    Route::get('/detail-pesanan/{no_pesanan}', [OrderController::class, 'detailOrder'])->name('detailpesanan');
+    Route::post('/update-stok', [OrderController::class, 'updateStock'])->name('updatestok');
+
+    //Sales Merch
+    Route::get('/penjualan', [SalesController::class, 'index'])->name('penjualan');
     
-    // Route::middleware(['auth', 'checkRole:1'])->group(function () {
-        // Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::get('/produk', [ProductController::class, 'index']);
-        Route::get('/toko', [StoreController::class, 'index']);
-        Route::get('/users', [UserController::class, 'index']);
-    // });
+    //Master
+    Route::get('/produk', [ProductController::class, 'index']);
+    Route::get('/toko', [StoreController::class, 'index']);
+    Route::get('/users', [UserController::class, 'index']);
+  
 });
+
+
 // Route::middleware(['auth', 'checkRole:2'])->group(function () {
 //     Route::get('/', [DashboardController::class, 'index'])->name('sales.dashboard');
 //     Route::get('/lobi', [DashboardController::class, 'index'])->name('lobi');

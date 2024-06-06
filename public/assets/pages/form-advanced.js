@@ -94,7 +94,7 @@
             maxboostedstep: 10000000,
             prefix: '$'
         });
-        $("input[name='demo3']").TouchSpin();
+        $("input[id='demo3']").TouchSpin();
         $("input[name='demo3_21']").TouchSpin({
             initval: 40
         });

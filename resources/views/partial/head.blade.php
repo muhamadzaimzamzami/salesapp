@@ -12,7 +12,10 @@
 <link href="assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/plugins/datatables/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-
+<link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+<link href="assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+<link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
 
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
