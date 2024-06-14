@@ -28,7 +28,7 @@
                         <div class="panel-body">
                             @if(session('status') == 1 )
                             <div class="row">
-                                <a href="#" class="btn btn-success">Tambah Penjualan</a>
+                                <a href="/tambah-penjualan" class="btn btn-success">Tambah Penjualan</a>
                             </div>
                             @else 
                             <div class="row">
@@ -45,41 +45,30 @@
                                             <th>Toko</th>
                                             <th>Produk</th>
                                             <th>Jumlah</th>
-                                            <th>Status</th>
+                                            <th>Harga</th>
+                                            <th>Bukti</th>
+                                            <th>Aksi</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($sales as $data)
                                         <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
+                                            <td>{{ $data->name }}</td>
+                                            <td>{{ $data->product_name }}</td>
+                                            <td>{{ $data->quantity }}</td>
+                                            <td>{{ $data->total_price }}</td>
+                                            <td>
+                                                <img src="{{ $data->image }}" alt="{{ $data->product_name }}" width="100">
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            
                                         </tr>
-                                        <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Toko A</td>
-                                            <td>Aqua</td>
-                                            <td>3</td>
-                                            <td>Lunas</td>
-                                        </tr>
+                                        @endforeach
+                                        
+                                        
                                     </tbody>
                                 </table>
 

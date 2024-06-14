@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function(){
 
     //Sales Merch
     Route::get('/penjualan', [SalesController::class, 'index'])->name('penjualan');
+    Route::get('/tambah-penjualan', [SalesController::class, 'addSales'])->name('tambahpenjualan');
+    Route::post('/create-penjualan', [SalesController::class, 'createSales'])->name('createpenjualan');
     
     //Master
     Route::get('/produk', [ProductController::class, 'index']);
