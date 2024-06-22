@@ -2,7 +2,7 @@
     <div class="sidebar-inner slimscrollleft">
         <div class="user-details">
             <div class="text-center">
-                <img src="assets/images/users/avatar-1.jpg" alt="" class="img-circle">
+                <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="" class="img-circle">
             </div>
             <div class="user-info">
                 <div class="dropdown">

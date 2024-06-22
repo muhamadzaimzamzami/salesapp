@@ -2,8 +2,8 @@
     <!-- LOGO -->
     <div class="topbar-left">
         <div class="text-center">
-            <a href="index.html" class="logo"><img src="assets/images/logo_b.png" height="28"></a>
-            <a href="index.html" class="logo-sm"><img src="assets/images/logo_b.png" height="36"></a>
+            <a href="index.html" class="logo"><img src="{{ asset('assets/images/logo_b.png') }}" height="28"></a>
+            <a href="index.html" class="logo-sm"><img src="{{ asset('assets/images/logo_b.png') }}" height="36"></a>
         </div>
     </div>
     <!-- Button mobile view to collapse sidebar menu -->
@@ -22,7 +22,7 @@
                    
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle profile waves-effect waves-light"
-                            data-toggle="dropdown" aria-expanded="true"><img src="assets/images/users/avatar-1.jpg"
+                            data-toggle="dropdown" aria-expanded="true"><img src="{{ asset('assets/images/users/avatar-1.jpg') }}"
                                 alt="user-img" class="img-circle"> </a>
                         <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"> Profile</a></li>

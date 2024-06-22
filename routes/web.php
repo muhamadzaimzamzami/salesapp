@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/create-pesanan', [OrderController::class, 'createOrder'])->name('createpesanan');
     Route::get('/detail-pesanan/{no_pesanan}', [OrderController::class, 'detailOrder'])->name('detailpesanan');
     Route::post('/update-stok', [OrderController::class, 'updateStock'])->name('updatestok');
+    Route::post('/selesaikan-order', [OrderController::class, 'finishedOrder'])->name('selesaikanorder');
 
     //Sales Merch
     Route::get('/penjualan', [SalesController::class, 'index'])->name('penjualan');
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function(){
     //Master
     Route::get('/produk', [ProductController::class, 'index']);
     Route::get('/toko', [StoreController::class, 'index']);
+    Route::get('/tambah-toko', [StoreController::class, 'addStore']);
+    Route::post('/create-toko', [StoreController::class, 'createStore'])->name('createtoko');
+    Route::get('/edit-toko/{id}', [StoreController::class, 'editStore'])->name('edittoko');
     Route::get('/users', [UserController::class, 'index']);
   
 });

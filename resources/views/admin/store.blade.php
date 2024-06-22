@@ -26,6 +26,7 @@
                             <h3 class="panel-title">Tabel Penjualan</h3>
                         </div>
                         <div class="panel-body">
+                            <a href="/tambah-toko" class="btn btn-success">Tambah Toko</a><br><br>
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
                                 cellspacing="0" width="100%">
                                 <thead>
@@ -51,7 +52,7 @@
                                             <td>{{ $data->phone }}</td>
                                             <td>{{ $data->address }}</td>
                                             <td>
-                                                <a href="" class="btn btn-warning"><span
+                                                <a href="{{ route('edittoko', ['id' => $data->id]) }}" class="btn btn-warning"><span
                                                         class="mdi mdi-lead-pencil"></span></a>
                                                 <a href="" class="btn btn-danger"><span
                                                         class="mdi mdi-delete"></span></a>
