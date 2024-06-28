@@ -40,12 +40,24 @@ Route::middleware('auth')->group(function(){
     
     //Master
     Route::get('/produk', [ProductController::class, 'index']);
+    Route::get('/tambah-produk', [ProductController::class, 'addProduct']);
+    Route::post('/create-produk', [ProductController::class, 'createProduct'])->name('createproduct');
+    Route::get('/edit-produk/{id}', [ProductController::class, 'editProduct'])->name('editproduct');
+    Route::post('/update-produk', [ProductController::class, 'updateProduct'])->name('updateproduct');
+    Route::get('/hapus-produk/{id}', [ProductController::class, 'deleteProduct'])->name('deleteproduct');
     Route::get('/toko', [StoreController::class, 'index']);
     Route::get('/tambah-toko', [StoreController::class, 'addStore']);
     Route::post('/create-toko', [StoreController::class, 'createStore'])->name('createtoko');
     Route::get('/edit-toko/{id}', [StoreController::class, 'editStore'])->name('edittoko');
+    Route::post('/update-toko', [StoreController::class, 'updateStore'])->name('updatetoko');
+    Route::get('/hapus-toko/{id}', [StoreController::class, 'deleteStore'])->name('deletetoko');
     Route::get('/users', [UserController::class, 'index']);
-  
+    Route::get('/tambah-users', [UserController::class, 'addUsers']);
+    Route::post('/create-users', [UserController::class, 'createUsers'])->name('createusers');
+    Route::get('/edit-users/{id}', [UserController::class, 'editUsers'])->name('editusers');
+    Route::post('/update-users', [UserController::class, 'updateUsers'])->name('updateusers');
+    Route::get('/delete-users/{id}', [UserController::class, 'deleteUsers'])->name('deleteusers');
+    Route::get('/reset-password/{id}', [UserController::class, 'resetPassword'])->name('resetpassword');
 });
 
 

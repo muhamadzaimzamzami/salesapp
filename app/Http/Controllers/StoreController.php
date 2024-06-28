@@ -35,4 +35,30 @@ class StoreController extends Controller
         $dataStore = DB::table('m_store')->where('id',$id)->first();
         return view('admin.editStore',compact('dataStore'));
     }
+
+    public function updateStore(Request $request){
+        $data = $request->all();
+        $updateStore = DB::table('m_store')
+              ->where('id', $data['id_store'])
+              ->update(
+                    [
+                        'name'     => $data['name'],
+                        'owner'    => $data['owner'],
+                        'phone'    => $data['phone'],
+                        'address'  => $data['address'],
+                        'status'   => 1
+                    ]
+                );
+        
+        if ($updateStore) {
+            return redirect('/toko')->with('success','Sukses Menambahkan Toko');
+        }
+    }
+
+    public function deleteStore($id){
+        $deleteStore = DB::table('m_store')->where('id', $id)->delete();
+        if ($deleteStore) {
+            return redirect('/toko')->with('success','Sukses Menambahkan Toko');
+        }
+    }
 }

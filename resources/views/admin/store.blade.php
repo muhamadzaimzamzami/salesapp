@@ -54,7 +54,7 @@
                                             <td>
                                                 <a href="{{ route('edittoko', ['id' => $data->id]) }}" class="btn btn-warning"><span
                                                         class="mdi mdi-lead-pencil"></span></a>
-                                                <a href="" class="btn btn-danger"><span
+                                                <a href="{{ route('deletetoko', ['id' => $data->id ]) }}" class="btn btn-danger"><span
                                                         class="mdi mdi-delete"></span></a>
                                             </td>
                                         </tr>

@@ -26,6 +26,7 @@
                             <h3 class="panel-title">Tabel Penjualan</h3>
                         </div>
                         <div class="panel-body">
+                            <a href="/tambah-produk" class="btn btn-success">Tambah Product</a><br><br>
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
                                 cellspacing="0" width="100%">
                                 <thead>
@@ -35,7 +36,8 @@
                                         <th>Nama Produk</th>
                                         <th>Gambar</th>
                                         <th>Kemasan</th>
-                                        <th>Harga</th>
+                                        <th>Harga(pcs)</th>
+                                        <th>Stock</th>
                                         <th>Aksi</th>
 
                                     </tr>
@@ -49,12 +51,15 @@
                                         <td>{{ $no }}</td>
                                         <td>{{ $data->barcode }}</td>
                                         <td>{{ $data->product_name }}</td>
-                                        <td></td>
+                                        <td>
+                                            <img src="{{ $data->image }} " alt="gambar Product" srcset="" height="50">
+                                        </td>
                                         <td>{{ $data->weight }}</td>
                                         <td>{{ $data->price_onpieces }}</td>
+                                        <td>{{ $data->stock }}</td>
                                         <td>
-                                            <a href="" class="btn btn-warning"><span class="mdi mdi-lead-pencil"></span></a>
-                                            <a href="" class="btn btn-danger"><span class="mdi mdi-delete"></span></a>
+                                            <a href="{{ route('editproduct', ['id' => $data->id]) }}" class="btn btn-warning"><span class="mdi mdi-lead-pencil"></span></a>
+                                            <a href="{{ route('deleteproduct', ['id' => $data->id]) }}" class="btn btn-danger"><span class="mdi mdi-delete"></span></a>
                                         </td>
                                     </tr>
                                     @php

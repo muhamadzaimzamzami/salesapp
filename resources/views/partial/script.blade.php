@@ -19,10 +19,6 @@
 <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
 
-<!-- Sweet-Alert  -->
-<script src="{{ asset('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js') }}"></script>
-<script src="{{ asset('assets/pages/sweet-alert.init.js') }}"></script>
-
 
 
 <!-- Plugins js -->
@@ -39,3 +35,6 @@
 
 
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
+<!-- Sweet-Alert  -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">

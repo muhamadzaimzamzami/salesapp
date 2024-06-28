@@ -23,33 +23,41 @@
                 <div class="col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Tabel Penjualan</h3>
+                            <h3 class="panel-title">Tambah Produk</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="{{route('updatetoko')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('createproduct')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
-                                        <input type="hidden" name="id_store" value="{{$dataStore->id}}">
+
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Nama Toko</label>
-                                            <input type="text" name="name" class="form-control" id="" value="{{ $dataStore->name }}" required>
+                                            <label for="exampleInputEmail1">Nama Produk</label>
+                                            <input type="text" name="product_name" class="form-control" id="" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Np HP</label>
-                                            <input type="number" name="phone" class="form-control" id="" value="{{ $dataStore->phone }}" required>
+                                            <label for="exampleInputPassword1">Barcode</label>
+                                            <input type="number" name="barcode" class="form-control" id="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Berat Bersih(gram)</label>
+                                            <input type="number" name="weight" class="form-control" id="">
                                         </div>
 
                                     </div>
                                     <div class="col-md-6 col-sm-12">
 
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Pemilik Toko</label>
-                                            <input type="text" name="owner" id="" class="form-control" value="{{ $dataStore->owner }}" required>
+                                            <label for="exampleInputEmail1">Harga(pcs)</label>
+                                            <input type="number" name="price_pcs" id="" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Alamat Toko</label>
-                                            <textarea name="address" class="form-control" id="" cols="30" rows="5">{{ $dataStore->address }}</textarea>
+                                            <label for="exampleInputEmail1">Stok(pcs)</label>
+                                            <input type="number" name="stock" id="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Produk</label>
+                                            <input type="file" name="image" id="" class="form-control">
                                         </div>
                                         
 
