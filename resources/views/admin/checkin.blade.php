@@ -32,12 +32,12 @@
                                 <div class="row">
 
                                     <div class="col-xs-6 col-sm-6 m-t-30 col-lg-6">
-                                        <form action="{{ route('checkin') }}" method="post">
+                                        <form action="{{ route('checkin') }}" method="post" id="formCheck">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Pilih Toko</label>
-                                                <select name="toko" id="" class="form-control">
-                                                    <option value="">---- Pilih Toko ----</option>
+                                                <select name="toko" id="tokoSelect" class="form-control">
+                                                    <option value="0">---- Pilih Toko ----</option>
                                                     @foreach ($toko as $item)
                                                         <option value="{{ $item->id }}">
                                                             {{ $item->name }}</option>
@@ -84,6 +84,15 @@
         </div> <!-- container -->
 
     </div>
+    <script>
+        document.getElementById('formCheck').addEventListener('submit', function(event) {
+            const tokoSelect = document.getElementById('tokoSelect');
+            if (tokoSelect.value == '0') {
+                event.preventDefault(); // Cegah form dari submit
+                alert('Pilih toko yang valid!');
+            }
+        });
+    </script>
     <script>
         $("#open_camera").click(function() {
             $("#my_camera").removeClass('d-none');

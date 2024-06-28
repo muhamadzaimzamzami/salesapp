@@ -8,15 +8,29 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\FunctionController;
 
+use Carbon\Carbon;
+
 class AbsentController extends FunctionController
 {
     public function index()
     {
-        $absensi = DB::table('t_absent')
-            ->select('t_absent.*', 'm_store.name')
-            ->join('m_store', 't_absent.id_store', '=', 'm_store.id')
-            ->where('t_absent.id_users', '=', Auth::user()->id)
-            ->get();
+        $today = Carbon::today();
+        if (session('role') == 1) {
+            $absensi = DB::table('t_absent')
+                            ->select('t_absent.*', 'm_store.name', 'users.fullname')
+                            ->join('m_store', 't_absent.id_store', '=', 'm_store.id')
+                            ->join('users','t_absent.id_users','=','users.id')
+                            ->whereDate('t_absent.created_at', '=', $today)
+                            ->get();
+        } else {
+            $absensi = DB::table('t_absent')
+                            ->select('t_absent.*', 'm_store.name')
+                            ->join('m_store', 't_absent.id_store', '=', 'm_store.id')
+                            ->where('t_absent.id_users', '=', Auth::user()->id)
+                            ->get();
+        }
+        
+        
         $return = [
             "absensi"
         ];

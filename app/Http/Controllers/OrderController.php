@@ -172,6 +172,6 @@ class OrderController extends Controller
               ->where('id', $id_productStore)
               ->update(['stock' => $newStock]);
         
-        return redirect('/produktoko');
+        return redirect('/produk-toko');
     }
 }   

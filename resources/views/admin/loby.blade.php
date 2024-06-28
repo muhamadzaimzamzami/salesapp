@@ -83,6 +83,9 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Toko</th>
+                                        @if (session('role')==1)
+                                            <th>Nama Sales</th>
+                                        @endif
                                         <th>Status</th>
                                         <th>Waktu Checkin</th>
                                         <th>Waktu Checkout</th>
@@ -98,6 +101,9 @@
                                         <tr>
                                             <td>{{ $no }}</td>
                                             <td>{{ $data->name }}</td>
+                                            @if (session('role')==1)
+                                            <td>{{ $data->fullname }}</td>
+                                            @endif
                                             <td>
                                                 @if ($data->status == 1)
                                                     <div class="btn btn-success">Checkin</div>

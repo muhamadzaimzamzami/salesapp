@@ -43,6 +43,9 @@
                                     <thead>
                                         <tr>
                                             <th>Toko</th>
+                                            @if (session('role')==1)
+                                            <th>Nama Sales</th>
+                                            @endif
                                             <th>Produk</th>
                                             <th>Jumlah</th>
                                             <th>Harga</th>
@@ -55,6 +58,9 @@
                                         @foreach ($sales as $data)
                                         <tr>
                                             <td>{{ $data->name }}</td>
+                                            @if (session('role')==1)
+                                            <td>{{ $data->fullname }}</td>
+                                            @endif
                                             <td>{{ $data->product_name }}</td>
                                             <td>{{ $data->quantity }}</td>
                                             <td>{{ $data->total_price }}</td>

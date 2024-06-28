@@ -10,12 +10,24 @@ class SalesController extends FunctionController
 {
     public function index()
     {
-        $sales = DB::table("t_sales_merch")
-                        ->select("t_sales_merch.*", "m_product.product_name", "m_store.name")
+        if (session('role') == 1) {
+            $sales = DB::table("t_sales_merch")
+                        ->select("t_sales_merch.*", "m_product.product_name", "m_store.name", "users.fullname")
                         ->join("m_product", "t_sales_merch.id_product" , "m_product.id")
                         ->join("m_store", "t_sales_merch.id_store", "m_store.id")
+                        ->join("users","t_sales_merch.id_users","users.id")
+                        ->get();
+        } else {
+            $sales = DB::table("t_sales_merch")
+                        ->select("t_sales_merch.*", "m_product.product_name", "m_store.name", "users.fullname")
+                        ->join("m_product", "t_sales_merch.id_product" , "m_product.id")
+                        ->join("m_store", "t_sales_merch.id_store", "m_store.id")
+                        ->join("users","t_sales_merch.id_users","users.id")
                         ->where("t_sales_merch.id_users", Auth::user()->id)    
                         ->get();
+        }
+        
+        
         $checkin = $this->cekAbsen();
         if ($checkin['status']) {
             $statusCheck = $checkin['dataAbsen']->status;

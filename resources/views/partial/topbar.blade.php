@@ -19,24 +19,14 @@
                 
 
                 <ul class="nav navbar-nav navbar-right pull-right">
-                   
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle profile waves-effect waves-light"
-                            data-toggle="dropdown" aria-expanded="true"><img src="{{ asset('assets/images/users/avatar-1.jpg') }}"
-                                alt="user-img" class="img-circle"> </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)"> Profile</a></li>
-                            <li class="divider"></li>
-                            <li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                <a href="{{ route('logout') }}" 
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                            </li>
-                        </ul>
+                    <li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a href="{{ route('logout') }}" 
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
                     </li>
                 </ul>
             </div>

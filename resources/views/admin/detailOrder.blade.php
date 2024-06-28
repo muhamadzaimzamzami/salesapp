@@ -135,7 +135,7 @@
                                     @csrf
                                     <input type="hidden" name="id_order" value={{ $detailOrder->id }}>
                                     <input type="hidden" name="id_store" value={{ $detailOrder->id_store }}>
-                                    @if ($detailOrder->status == 1)
+                                    @if ($detailOrder->status == 1 && session('role') == 1)
                                         <button type="submit" class="btn btn-success">Selesaikan</button>
                                     @endif
                                     
