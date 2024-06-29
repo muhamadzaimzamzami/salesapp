@@ -27,8 +27,8 @@
                             <h4 class="panel-title">Total Toko</h4>
                         </div>
                         <div class="panel-body">
-                            <h3 class=""><b>2568</b></h3>
-                            <p class="text-muted"><b>48%</b> From Last 24 Hours</p>
+                            <h3 class=""><b>{{ $totalToko }}</b></h3>
+                            {{-- <p class="text-muted"><b>48%</b> From Last 24 Hours</p> --}}
                         </div>
                     </div>
                 </div>
@@ -36,11 +36,11 @@
                 <div class="col-sm-6 col-lg-4">
                     <div class="panel panel-primary text-center">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Pesanan</h4>
+                            <h4 class="panel-title">Total Produk</h4>
                         </div>
                         <div class="panel-body">
-                            <h3 class=""><b>3685</b></h3>
-                            <p class="text-muted"><b>15%</b> Orders in Last 10 months</p>
+                            <h3 class=""><b>{{ $totalProduk }}</b></h3>
+                            {{-- <p class="text-muted"><b>15%</b> Orders in Last 10 months</p> --}}
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@
                             <h4 class="panel-title">Penjualan</h4>
                         </div>
                         <div class="panel-body">
-                            <h3 class=""><b>25487</b></h3>
-                            <p class="text-muted"><b>65%</b> From Last 24 Hours</p>
+                            <h3 class=""><b>{{$totalPenjualan}}</b></h3>
+                            {{-- <p class="text-muted"><b>65%</b> From Last 24 Hours</p> --}}
                         </div>
                     </div>
                 </div>
@@ -71,44 +71,32 @@
                                 cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>Tanggal</th>
                                         <th>Toko</th>
-                                        <th>Produk</th>
-                                        <th>Jumlah</th>
+                                        <th>SPG</th>
+                                        <th>Total Harga</th>
                                         <th>Status</th>
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Toko A</td>
-                                        <td>Aqua</td>
-                                        <td>3</td>
-                                        <td>Lunas</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Toko A</td>
-                                        <td>Aqua</td>
-                                        <td>3</td>
-                                        <td>Lunas</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Toko A</td>
-                                        <td>Aqua</td>
-                                        <td>3</td>
-                                        <td>Lunas</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Toko A</td>
-                                        <td>Aqua</td>
-                                        <td>3</td>
-                                        <td>Lunas</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Toko A</td>
-                                        <td>Aqua</td>
-                                        <td>3</td>
-                                        <td>Lunas</td>
-                                    </tr>
+                                    @foreach ($dataPesanan as $dp)
+                                        <tr>
+                                            <td>{{ $dp->created_at}}</td>
+                                            <td>{{ $dp->name}}</td>
+                                            <td>{{ $dp->fullname}}</td>
+                                            <td>{{ $dp->total_price}}</td>
+                                            <td>
+                                                @if ($dp->status == 1)
+                                                    <span class="btn btn-warning">Diproses</span>
+                                                @else
+                                                    <span class="btn btn-success">Selesai</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    
+                                    
                                 </tbody>
                             </table>
 

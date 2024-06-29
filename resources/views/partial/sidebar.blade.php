@@ -2,18 +2,12 @@
     <div class="sidebar-inner slimscrollleft">
         <div class="user-details">
             <div class="text-center">
-                <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="" class="img-circle">
+                <img src="{{ asset('assets/images/users/user_i.png') }}" alt="" class="img-circle">
             </div>
             <div class="user-info">
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ Auth::user()->fullname }}</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)"> Profile</a></li>
-                        <li><a href="javascript:void(0)"> Settings</a></li>
-                        <li><a href="javascript:void(0)"> Lock screen</a></li>
-                        <li class="divider"></li>
-                        <li><a href="javascript:void(0)"> Logout</a></li>
-                    </ul>
+                    
                 </div>
 
                 <p class="text-muted m-0"><i class="fa fa-dot-circle-o text-success"></i> {{ session('name_store')}}</p>
@@ -50,6 +44,10 @@
                     </li>
                     @endif
                 @endif
+
+                <li>
+                    <a href="/laporan" class="waves-effect"><i class="mdi mdi-book-multiple"></i><span> Report </span></a>
+                </li>
 
                 @if(Auth::user()->level == 1)
                 <li class="has_sub">

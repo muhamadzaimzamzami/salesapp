@@ -5,7 +5,7 @@
 <meta content="ThemeDesign" name="author" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<link rel="shortcut icon" href="{{ asset('assets/images/logo_b.png') }}">
+<link rel="shortcut icon" href="{{ asset('assets/images/logo_n.png') }}">
 
 <!-- DataTables -->
 <link href="{{ asset('assets/plugins/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />

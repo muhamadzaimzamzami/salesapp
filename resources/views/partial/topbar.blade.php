@@ -2,8 +2,8 @@
     <!-- LOGO -->
     <div class="topbar-left">
         <div class="text-center">
-            <a href="index.html" class="logo"><img src="{{ asset('assets/images/logo_b.png') }}" height="28"></a>
-            <a href="index.html" class="logo-sm"><img src="{{ asset('assets/images/logo_b.png') }}" height="36"></a>
+            <a href="index.html" class="logo"><img src="{{ asset('assets/images/logo_n.png') }}" height="80"></a>
+            <a href="index.html" class="logo-sm"><img src="{{ asset('assets/images/logo_n.png') }}" height="36"></a>
         </div>
     </div>
     <!-- Button mobile view to collapse sidebar menu -->

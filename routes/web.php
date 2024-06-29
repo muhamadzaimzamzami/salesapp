@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
@@ -58,6 +59,9 @@ Route::middleware('auth')->group(function(){
     Route::post('/update-users', [UserController::class, 'updateUsers'])->name('updateusers');
     Route::get('/delete-users/{id}', [UserController::class, 'deleteUsers'])->name('deleteusers');
     Route::get('/reset-password/{id}', [UserController::class, 'resetPassword'])->name('resetpassword');
+
+    //Report
+    Route::get('/laporan', [ReportController::class, 'index']);
 });
 
 
