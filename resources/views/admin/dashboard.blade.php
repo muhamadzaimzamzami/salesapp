@@ -39,7 +39,7 @@
                             <h4 class="panel-title">Total Produk</h4>
                         </div>
                         <div class="panel-body">
-                            <h3 class=""><b>{{ $totalProduk }}</b></h3>
+                            <h3 class=""><b>{{ $totalProduk->total }}</b></h3>
                             {{-- <p class="text-muted"><b>15%</b> Orders in Last 10 months</p> --}}
                         </div>
                     </div>
@@ -74,6 +74,10 @@
                                         <th>Tanggal</th>
                                         <th>Toko</th>
                                         <th>SPG</th>
+                                        @if (session('role')==3)
+                                            <th>Nama Produk</th> 
+                                            <th>Jumlah</th> 
+                                        @endif
                                         <th>Total Harga</th>
                                         <th>Status</th>
                                         
@@ -85,9 +89,17 @@
                                             <td>{{ $dp->created_at}}</td>
                                             <td>{{ $dp->name}}</td>
                                             <td>{{ $dp->fullname}}</td>
+                                            @if (session('role')==3)
+                                               <td>{{$dp->product_name}}</td> 
+                                               <td>{{$dp->quantity}}</td> 
+                                            @endif
                                             <td>{{ $dp->total_price}}</td>
                                             <td>
-                                                @if ($dp->status == 1)
+                                                @if ($dp->status == 1 && session('role')==3)
+                                                    <span class="btn btn-success">Selesai</span>
+                                                @elseif ($dp->status == 0 and session('role')==3)
+                                                    <span class="btn btn-warning">Diproses</span>
+                                                @elseif($dp->status == 1)
                                                     <span class="btn btn-warning">Diproses</span>
                                                 @else
                                                     <span class="btn btn-success">Selesai</span>

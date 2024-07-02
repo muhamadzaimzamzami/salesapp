@@ -4,6 +4,7 @@
 <meta content="Admin Dashboard" name="description" />
 <meta content="ThemeDesign" name="author" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="shortcut icon" href="{{ asset('assets/images/logo_n.png') }}">
 

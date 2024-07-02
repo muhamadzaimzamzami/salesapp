@@ -50,7 +50,7 @@
                                             <td>{{ $no }}</td>
                                             <td>{{ $data->barcode }}</td>
                                             <td>{{ $data->product_name }}</td>
-                                            <td></td>
+                                            <td><img src="{{ asset($data->image)}}" alt="gambar product" srcset=""></td>
                                             <td>{{ $data->weight }}</td>
                                             <td>{{ $data->stock }}</td>
                                             <td>{{ $data->price_onpieces }}</td>

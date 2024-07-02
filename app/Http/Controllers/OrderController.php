@@ -152,6 +152,9 @@ class OrderController extends Controller
                     ]
                 );
             }
+            $updateStokMaster = DB::table('m_product')
+                                ->where('id', $value->id_product)
+                                ->decrement('stock', $value->quantity);
         }
 
         //Update status pesanan

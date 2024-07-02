@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/penjualan', [SalesController::class, 'index'])->name('penjualan');
     Route::get('/tambah-penjualan', [SalesController::class, 'addSales'])->name('tambahpenjualan');
     Route::post('/create-penjualan', [SalesController::class, 'createSales'])->name('createpenjualan');
+    Route::get('/edit-penjualan/{id}', [SalesController::class, 'editSales'])->name('editpenjualan');
+    Route::post('/update-penjualan', [SalesController::class, 'updateSales'])->name('updatepenjualan');
+    Route::get('/hapus-penjualan/{id}', [SalesController::class, 'deleteSales'])->name('deletepenjualan');
     
     //Master
     Route::get('/produk', [ProductController::class, 'index']);
@@ -62,6 +65,7 @@ Route::middleware('auth')->group(function(){
 
     //Report
     Route::get('/laporan', [ReportController::class, 'index']);
+    Route::post('/getlaporan', [ReportController::class, 'getReport'])->name('getlaporan');
 });
 
 

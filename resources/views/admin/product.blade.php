@@ -52,7 +52,7 @@
                                         <td>{{ $data->barcode }}</td>
                                         <td>{{ $data->product_name }}</td>
                                         <td>
-                                            <img src="{{ $data->image }} " alt="gambar Product" srcset="" height="50">
+                                            <img src="{{ asset($data->image) }} " alt="gambar Product" srcset="" height="50">
                                         </td>
                                         <td>{{ $data->weight }}</td>
                                         <td>{{ $data->price_onpieces }}</td>

@@ -65,9 +65,13 @@
                                             <td>{{ $data->quantity }}</td>
                                             <td>{{ $data->total_price }}</td>
                                             <td>
-                                                <img src="{{ $data->image }}" alt="{{ $data->product_name }}" width="100">
+                                                <img src="{{ asset($data->image) }}" alt="{{ $data->product_name }}" width="100">
                                             </td>
                                             <td>
+                                                <a href="{{ route('editpenjualan', ['id' => $data->id]) }}" class="btn btn-warning"><span
+                                                class="mdi mdi-lead-pencil"></span></a>
+                                                <a href="{{ route('deletepenjualan', ['id' => $data->id ]) }}" class="btn btn-danger"><span
+                                                        class="mdi mdi-delete"></span></a>
 
                                             </td>
                                             
