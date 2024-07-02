@@ -11,9 +11,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-header-title">
-                        <h4 class="pull-left page-title">Lobi</h4>
+                        <h4 class="pull-left page-title">Lobby</h4>
                         <ol class="breadcrumb pull-right">
-                            <li class="active">Lobi</li>
+                            <li class="active">Lobby</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>

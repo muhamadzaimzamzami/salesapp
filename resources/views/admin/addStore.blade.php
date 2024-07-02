@@ -36,9 +36,9 @@
                                             <input type="text" name="name" class="form-control" id="" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Np HP</label>
+                                            <label for="exampleInputPassword1">No Phone</label>
                                             <input type="number" name="phone" class="form-control" id=""
-                                                placeholder="Jumlah Barang">
+                                                placeholder="No Phone">
                                         </div>
 
                                     </div>

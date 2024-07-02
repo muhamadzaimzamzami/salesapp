@@ -22,7 +22,7 @@
                 </li>
 
                 <li>
-                    <a href="/lobi" class="waves-effect"><i class="mdi mdi-exit-to-app"></i><span> Loby
+                    <a href="/lobi" class="waves-effect"><i class="mdi mdi-exit-to-app"></i><span> Lobby
                         </span></a>
                 </li>
                 @if (Auth::user()->level == 3 || Auth::user()->level == 1)
