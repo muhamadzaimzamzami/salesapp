@@ -12,7 +12,7 @@ class CheckRole
     public function handle($request, Closure $next, $role)
     {
         if (!Auth::check() || Auth::user()->level != $role) {
-            return redirect()->route('loginform');
+            return redirect('/');
         }
 
         return $next($request);

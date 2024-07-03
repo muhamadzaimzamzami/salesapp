@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function(){
     //Report
     Route::get('/laporan', [ReportController::class, 'index']);
     Route::post('/getlaporan', [ReportController::class, 'getReport'])->name('getlaporan');
+    Route::get('/getexcel', [ReportController::class, 'exportExcel'])->name('getexcel');
 });
 
 

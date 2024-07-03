@@ -29,7 +29,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <form action="" method="post">
+                                <form action="{{ route('getlaporan')}}" method="post">
                                     @csrf
                                     <div class="col-md-5 col-sm-12">
                                         <div class="form-group">
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12 text-center">
-                                        <button type="" class="btn btn-primary"
+                                        <button type="submit" class="btn btn-primary"
                                             id="tampilkanLaporan">Tampilkan</button>
                                     </div>
                                 </form>

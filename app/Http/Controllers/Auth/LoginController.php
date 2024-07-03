@@ -36,7 +36,7 @@ class LoginController extends FunctionController
             return redirect()->intended('/dashboard');
         }
 
-        return redirect('loginform')->withErrors('Login details are not valid');
+        return redirect('/')->withErrors('Login details are not valid');
     }
     public function logout(Request $request)
     {

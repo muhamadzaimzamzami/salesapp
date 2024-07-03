@@ -4,45 +4,96 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DataExport;
 
 class ReportController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('admin.report');
     }
 
-    public function getReport(){
+    public function getReport(Request $request)
+    {
 
-        // Ambil parameter tanggal dari request
-        $data = json_decode($_POST['datanya']);
-        $startDate = $data->startDate;
-        $endDate = $data->endDate;
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
 
-        // Step 1: Get list of unique product names
+        // Ambil semua nama produk unik dari tabel m_product
         $products = DB::table('m_product')->pluck('product_name');
 
-        // Step 2: Build the dynamic select parts of the query
+        // Buat kolom dinamis untuk setiap produk
         $selectColumns = [
-            'b.fullname as spg',
-            'c.name as toko'
+            'users.fullname as spg',
+            'm_store.name as toko'
         ];
 
         foreach ($products as $product) {
-            $selectColumns[] = DB::raw("SUM(CASE WHEN e.product_name = '" . addslashes($product) . "' THEN d.quantity ELSE 0 END) AS `" . addslashes($product) . "`");
+            $selectColumns[] = DB::raw("SUM(CASE WHEN m_product.product_name = '" . addslashes($product) . "' THEN t_order_detail.quantity ELSE 0 END) AS '" . addslashes($product) . "'");
         }
 
-        // Step 3: Build the complete query with date range filtering
-        $query = DB::table('t_order as a')
-            ->join('users as b', 'a.id_users', '=', 'b.id')
-            ->join('m_store as c', 'a.id_store', '=', 'c.id')
-            ->join('t_order_detail as d', 'a.id', '=', 'd.id_order')
-            ->join('m_product as e', 'd.id_product', '=', 'e.id')
+        // dd($selectColumns);
+
+        // Buat query utama dengan kolom dinamis
+        $query = DB::table('t_order')
             ->select($selectColumns)
-            ->where('a.status', '=', 2)
-            ->whereBetween('a.order_date', [$startDate, $endDate])
-            ->groupBy('b.fullname', 'c.name')
+            ->join('users', 't_order.id_users', '=', 'users.id')
+            ->join('m_store', 't_order.id_store', '=', 'm_store.id')
+            ->join('t_order_detail', 't_order.id', '=', 't_order_detail.id_order')
+            ->join('m_product', 't_order_detail.id_product', '=', 'm_product.id')
+            ->where('t_order.status', '=', 2)
+            ->whereBetween('t_order.created_at', [$startDate, $endDate])
+            ->groupBy('users.fullname', 'm_store.name')
             ->get();
 
-        return json_encode($query);
+        $return = [
+            'query',
+            'startDate',
+            'endDate'
+        ];
+
+        return view('admin.viewReport', compact($return));
+    }
+
+    public function exportExcel(Request $request){
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        // Ambil semua nama produk unik dari tabel m_product
+        $products = DB::table('m_product')->pluck('product_name');
+
+        // Buat kolom dinamis untuk setiap produk
+        $selectColumns = [
+            'users.fullname as spg',
+            'm_store.name as toko'
+        ];
+
+        foreach ($products as $product) {
+            $selectColumns[] = DB::raw("SUM(CASE WHEN m_product.product_name = '" . addslashes($product) . "' THEN t_order_detail.quantity ELSE 0 END) AS '" . addslashes($product) . "'");
+        }
+
+        $headings = ['SPG', 'Toko'];
+        foreach ($products as $product) {
+            $headings[] = $product;
+        }
+
+        // dd($selectColumns);
+
+        // Buat query utama dengan kolom dinamis
+        $query = DB::table('t_order')
+            ->select($selectColumns)
+            ->join('users', 't_order.id_users', '=', 'users.id')
+            ->join('m_store', 't_order.id_store', '=', 'm_store.id')
+            ->join('t_order_detail', 't_order.id', '=', 't_order_detail.id_order')
+            ->join('m_product', 't_order_detail.id_product', '=', 'm_product.id')
+            ->where('t_order.status', '=', 2)
+            ->whereBetween('t_order.created_at', [$startDate, $endDate])
+            ->groupBy('users.fullname', 'm_store.name')
+            ->get();
+
+        
+        // Export data menggunakan class export yang sudah dibuat
+        return Excel::download(new DataExport($query, $headings), 'laporanpenjualan.xlsx');
     }
 }
