@@ -46,22 +46,22 @@
                             <h3 class="panel-title">Tambah Users</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="{{route('createusers')}}" method="post" enctype="multipart/form-data">
+                            <form id="formUsers" action="{{route('createusers')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nama Lengkap</label>
-                                            <input type="text" name="fullname" class="form-control" id="" required>
+                                            <input type="text" name="fullname" class="form-control" id="fullname" >
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">No. HP</label>
-                                            <input type="number" name="phone" class="form-control" id="" required>
+                                            <input type="number" name="phone" class="form-control" id="phone" >
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Role</label>
-                                            <select name="role" id="" class="form-control">
+                                            <select name="role" id="role" class="form-control">
                                                 <option value="0">== Pilih Role Users ==</option>
                                                 <option value="1">Super Admin</option>
                                                 <option value="2">Sales TO</option>
@@ -74,15 +74,15 @@
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Username</label>
-                                            <input type="text" name="username" id="" class="form-control" required>
+                                            <input type="text" name="username" id="username" class="form-control" >
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Email</label>
-                                            <input type="email" name="email" id="" class="form-control" required>
+                                            <input type="email" name="email" id="email" class="form-control" >
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Password</label>
-                                            <input type="text" name="password" id="" class="form-control" required>
+                                            <input type="text" name="password" id="password" class="form-control" >
                                         </div>
                                         
 
@@ -105,6 +105,25 @@
     </div>
     
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('formUsers').addEventListener('submit', function(event) {
+            var fullname = document.getElementById("fullname").value;
+            var phone = document.getElementById("phone").value;
+            var role = document.getElementById("role").value;
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
 
+            if (fullname !== "" && phone !== "" && role === "0" && username !== "" && email !== "" && password !== "")  {
+                return true; // Form will be submitted
+            } else {
+                alert('Anda harus mengisi data dengan lengkap!');
+                event.preventDefault(); // Prevent form submission
+                return false; // Form is not valid
+            }
+        });
+    });
+</script>
 @section('script')
 @endsection

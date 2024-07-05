@@ -49,12 +49,15 @@ class AbsentController extends FunctionController
     {
         $id_store = $request->toko;
         $idUser = Auth::user()->id;
+        $imageName = time().'.'.$request->photo->extension();
+        $request->photo->move(public_path('assets/images/absent'), $imageName);
+        $photo = 'assets/images/absent/'.$imageName;
 
         $insert = DB::table("t_absent")->insert([
             "id_users" => $idUser,
             "id_store" => $id_store,
             "status" => 1,
-            "image" => 'photo_absen.png'
+            "image" => $photo
         ]);
 
 
