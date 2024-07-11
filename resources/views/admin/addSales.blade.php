@@ -37,7 +37,7 @@
                                             <select name="product" class="form-control" id="product">
                                                 <option value="0">== Pilih Product ==</option>
                                                 @foreach ($storeProduct as $product)
-                                                    <option value="{{ $product->id }}"> {{ $product->product_name }}
+                                                    <option value="{{ $product->id }}" product-price="{{ $product->price_onpieces }}"> {{ $product->product_name }}
                                                     </option>
                                                 @endforeach
 
@@ -51,7 +51,7 @@
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Total Harga</label>
                                             <input type="number" name="total" class="form-control" id="total"
-                                                placeholder="Total Harga">
+                                                placeholder="Total Harga" readonly>
                                         </div>
 
                                     </div>
@@ -101,6 +101,24 @@
                 return false; // Form is not valid
             }
         });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const productSelect = document.getElementById('product');
+        const jumlahBarangInput = document.getElementById('jumlah_barang');
+        const totalHargaInput = document.getElementById('total');
+
+        function calculateTotal() {
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            const productPrice = parseFloat(selectedOption.getAttribute('product-price')) || 0;
+            const jumlahBarang = parseFloat(jumlahBarangInput.value) || 0;
+            const totalHarga = productPrice * jumlahBarang;
+            totalHargaInput.value = totalHarga;
+        }
+
+        productSelect.addEventListener('change', calculateTotal);
+        jumlahBarangInput.addEventListener('input', calculateTotal);
     });
 </script>
 @section('script')

@@ -25,12 +25,14 @@ class ReportController extends Controller
 
         // Buat kolom dinamis untuk setiap produk
         $selectColumns = [
+            DB::raw('DATE(t_order.created_at) as Tanggal'),
+            DB::raw('TIME(t_order.created_at) as Jam'),
             'users.fullname as spg',
             'm_store.name as toko'
         ];
 
         foreach ($products as $product) {
-            $selectColumns[] = DB::raw("SUM(CASE WHEN m_product.product_name = '" . addslashes($product) . "' THEN t_order_detail.quantity ELSE 0 END) AS '" . addslashes($product) . "'");
+            $selectColumns[] = DB::raw("CASE WHEN m_product.product_name = '" . addslashes($product) . "' THEN t_order_detail.quantity ELSE 0 END AS '" . addslashes($product) . "'");
         }
 
         // dd($selectColumns);
@@ -44,7 +46,6 @@ class ReportController extends Controller
             ->join('m_product', 't_order_detail.id_product', '=', 'm_product.id')
             ->where('t_order.status', '=', 2)
             ->whereBetween('t_order.created_at', [$startDate, $endDate])
-            ->groupBy('users.fullname', 'm_store.name')
             ->get();
 
         $return = [
@@ -65,15 +66,17 @@ class ReportController extends Controller
 
         // Buat kolom dinamis untuk setiap produk
         $selectColumns = [
+            DB::raw('DATE(t_order.created_at) as Tanggal'),
+            DB::raw('TIME(t_order.created_at) as Jam'),
             'users.fullname as spg',
             'm_store.name as toko'
         ];
 
         foreach ($products as $product) {
-            $selectColumns[] = DB::raw("SUM(CASE WHEN m_product.product_name = '" . addslashes($product) . "' THEN t_order_detail.quantity ELSE 0 END) AS '" . addslashes($product) . "'");
+            $selectColumns[] = DB::raw("CASE WHEN m_product.product_name = '" . addslashes($product) . "' THEN t_order_detail.quantity ELSE 0 END AS '" . addslashes($product) . "'");
         }
 
-        $headings = ['SPG', 'Toko'];
+        $headings = ['Tanggal','Jam','SPG', 'Toko'];
         foreach ($products as $product) {
             $headings[] = $product;
         }
@@ -89,7 +92,6 @@ class ReportController extends Controller
             ->join('m_product', 't_order_detail.id_product', '=', 'm_product.id')
             ->where('t_order.status', '=', 2)
             ->whereBetween('t_order.created_at', [$startDate, $endDate])
-            ->groupBy('users.fullname', 'm_store.name')
             ->get();
 
         

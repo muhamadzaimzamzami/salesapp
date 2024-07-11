@@ -46,7 +46,7 @@ class SalesController extends FunctionController
     public function addSales()
     {
         $storeProduct = DB::table("t_product_store")
-                        ->select("t_product_store.*", "m_product.product_name")
+                        ->select("t_product_store.*", "m_product.product_name", "m_product.price_onpieces")
                         ->join("m_product", "t_product_store.id_product", "m_product.id")
                         ->where("t_product_store.id_store", session('id_store'))
                         ->get();

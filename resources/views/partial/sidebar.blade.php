@@ -45,11 +45,12 @@
                     @endif
                 @endif
 
+                
+
+                @if(Auth::user()->level == 1)
                 <li>
                     <a href="/laporan" class="waves-effect"><i class="mdi mdi-book-multiple"></i><span> Report </span></a>
                 </li>
-
-                @if(Auth::user()->level == 1)
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-folder-outline"></i> <span> Master Data
                         </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
