@@ -11,8 +11,7 @@ class DashboardController extends Controller
     {
         $totalToko = DB::table('m_store')->count();
         $totalProduk = DB::table('m_product')
-                    ->select(DB::raw('count(distinct product_name) as total'))
-                    ->first();
+                    ->count();
 
         if (session('role')==1) {
             $totalPenjualan = DB::table('t_order')
