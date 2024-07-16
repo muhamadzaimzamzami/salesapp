@@ -29,8 +29,8 @@
                             <form action="{{ route('createpesanan') }}" method="post" id="formOrder">
                                 @csrf
                                 <table id="datatable-responsive"
-                                    class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
-                                    width="100%">
+                                    class="table table-striped table-bordered dt-responsive nowrap tableProduct"
+                                    cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -49,7 +49,7 @@
                                         @foreach ($products as $data)
                                             <tr>
                                                 <td><input type="checkbox" name="select_product[{{ $data->id }}]"
-                                                        value="{{ $data->id }}" class="form-control"></td>
+                                                        value="{{ $data->id }}" class="form-control product"></td>
                                                 <td>{{ $data->barcode }}</td>
                                                 <td>{{ $data->product_name }}</td>
                                                 <td></td>
@@ -57,7 +57,8 @@
                                                 <td><input type="hidden" name="price_product[{{ $data->id }}]"
                                                         value="{{ $data->price_onpieces }}">{{ $data->price_onpieces }}</td>
                                                 <td>
-                                                    <input type="text" name="quantity_product[{{ $data->id }}]">
+                                                    <input class="form-control quantity" type="text"
+                                                        name="quantity_product[{{ $data->id }}]">
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -67,7 +68,7 @@
 
                                     </tbody>
                                 </table>
-                                <button onclick="" type="submit" class="btn btn-primary">Simpan Pesanan</button>
+                                <button id="validateBtn" type="submit" class="btn btn-primary">Simpan Pesanan</button>
                             </form>
 
                         </div>
@@ -82,61 +83,39 @@
     </div>
 @endsection
 <script>
-    // function approach2Fn() {
-    //     const formData = new FormData(document.getElementById('formOrder'));
-    //     const checkedOptions = formData.getAll('select_product[]');
-    //     if (checkedOptions.length === 0) {
-    //         alert('Harap pilih produk yang ingin anda pesan!');
-    //         event.preventDefault(); // Prevent form submission
-    //         return false; // Form is not valid
-    //     } else {
-    //         return true;
-    //     }
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('formOrder').addEventListener('submit', function(event) {
+            let isValid = true;
+            let isAnyCheckboxChecked = false;
 
-    // }
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     document.getElementById('formOrder').addEventListener('submit', function(event) {
-    //         const formdata = new FormData(document.getElementById('formOrder'));
-    //         const checkedOptions = formData.getAll('select_product[]');
-    //         if (checkedOptions.length === 0) {
-    //             alert('Harap pilih produk yang ingin anda pesan!');
-    //             event.preventDefault(); // Prevent form submission
-    //             return false; // Form is not valid
-    //         } else {
-    //             return true;
-    //         }
-    //         // // Ambil semua checkbox yang dicentang
-    //         // const checkedProducts = [];
-    //         // form.querySelectorAll('input[type="checkbox"][name="select_product[]"]:checked').forEach(checkbox => {
-    //         //     checkedProducts.push(checkbox.value);
-    //         // });
+            // Iterate over each row
+            $('.tableProduct tbody tr').each(function() {
+                // Get checkbox and quantity input of the current row
+                let checkbox = $(this).find('.product');
+                let quantityInput = $(this).find('.quantity');
 
-    //         // // Cek jika tidak ada produk yang dipilih
-    //         // if (checkedProducts.length === 0) {
-    //         //     alert('Harap Pilih barang yang akan dipesan');
-    //         //     event.preventDefault();
-    //         //     return false;
-    //         // }
+                // Check if checkbox is checked
+                if (checkbox.is(':checked')) {
+                    isAnyCheckboxChecked = true;
+                    // Check if quantity input is empty
+                    if (quantityInput.val().trim() === '') {
+                        isValid = false;
+                        alert('Mohon masukan jumlah produk terpilih!');
+                        event.preventDefault(); // Prevent form submission
+                        return false; // Exit the loop
+                    }
+                }
+            });
 
-    //         // Cek setiap produk yang dipilih memiliki jumlah yang diisi
-    //         // let allQuantitiesFilled = true;
-    //         // checkedProducts.forEach(productId => {
-    //         //     const quantity = formData.get('quantity_product[' + productId + ']');
-    //         //     if (!quantity || quantity.trim() === '') {
-    //         //         allQuantitiesFilled = false;
-    //         //     }
-    //         // });
-
-    //         // if (!allQuantitiesFilled) {
-    //         //     alert('Harap isi jumlah untuk setiap produk yang dipilih.');
-    //         //     return false;
-    //         // }
-
-    //         // Jika semua va
-    //         return true;
-
-    //     });
-    // });
+            if (!isAnyCheckboxChecked) {
+                alert('Mohon pilih produk yang akan dipesan!');
+                event.preventDefault(); // Prevent form submission
+                return false; // Exit the loop
+            } else if (isValid) {
+                return true;
+            }
+        });
+    });
 </script>
 @section('script')
 @endsection

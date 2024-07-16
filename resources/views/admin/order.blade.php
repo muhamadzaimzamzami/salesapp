@@ -27,6 +27,14 @@
                             <h3 class="panel-title">Tabel Pesanan </h3>
                         </div>
                         <div class="panel-body">
+                            @if(session('success'))
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                             @if (session('status') == 1)
                                 <div class="row">
                                     <a href="/tambah-pesanan" class="btn btn-success">Tambah Pesanan</a>

@@ -86,7 +86,7 @@ class SalesController extends FunctionController
                             ->where('id', $product)
                             ->decrement('stock', $quantity);
             if ($updateStok) {
-                return redirect("penjualan");
+                return redirect("penjualan")->with('success', 'Berhasil Menambahkan penjualan.');
             }
             
         }

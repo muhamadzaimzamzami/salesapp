@@ -9,83 +9,89 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $users = DB::table('users')->get();
-        return view('admin.userManagement',compact('users'));
+        return view('admin.userManagement', compact('users'));
     }
 
-    public function addUsers(){
+    public function addUsers()
+    {
         return view('admin.addUsers');
     }
 
-    public function createUsers(Request $request){
+    public function createUsers(Request $request)
+    {
         $data = $request->all();
         $cekUsers = DB::table('users')->where('email', $data['email'])->first();
         if ($cekUsers) {
             Session::flash('error', 'Email sudah terdaftar');
             return redirect()->back();
-        }else{
+        } else {
             $insertUsers = DB::table('users')
-                            ->insert([
-                                'fullname' => $data['fullname'],
-                                'username'  => $data['username'],
-                                'email'     => $data['email'],
-                                'password'  => Hash::make($data['password']),
-                                'phone'     => $data['phone'],
-                                'level'     => $data['role'],
-                                'status'    => 1
-                            ]);
+                ->insert([
+                    'fullname' => $data['fullname'],
+                    'username' => $data['username'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                    'phone' => $data['phone'],
+                    'level' => $data['role'],
+                    'status' => 1
+                ]);
             if ($insertUsers) {
                 Session::flash('success', 'Users Berhasil Ditambahkan');
                 return redirect('/users');
-            }else{
+            } else {
                 Session::flash('error', 'Users Gagal Ditambahkan');
                 return redirect('/users');
             }
         }
     }
 
-    public function editUsers($id){
+    public function editUsers($id)
+    {
         $dataUsers = DB::table('users')->where('id', $id)->first();
         return view('admin.editUsers', compact('dataUsers'));
     }
 
-    public function updateUsers(Request $request){
+    public function updateUsers(Request $request)
+    {
         $data = $request->all();
-        $cekUsers = DB::table('users')->where('email', $data['email'])->where('id','!=', $data['id_users'])->first();
+        $cekUsers = DB::table('users')->where('email', $data['email'])->where('id', '!=', $data['id_users'])->first();
         if ($cekUsers) {
             Session::flash('error', 'Email sudah terdaftar');
             return redirect()->back();
-        }else{
+        } else {
             $udpateUsers = DB::table('users')
-                            ->where('id', $data['id_users'])
-                            ->update([
-                                'fullname' => $data['fullname'],
-                                'username'  => $data['username'],
-                                'email'     => $data['email'],
-                                'phone'     => $data['phone'],
-                                'level'     => $data['role'],
-                            ]);
+                ->where('id', $data['id_users'])
+                ->update([
+                    'fullname' => $data['fullname'],
+                    'username' => $data['username'],
+                    'email' => $data['email'],
+                    'phone' => $data['phone'],
+                    'level' => $data['role'],
+                ]);
             if ($udpateUsers) {
-                Session::flash('success', 'Users Berhasil Diubah');
-                return redirect('/users');
-            }else{
-                Session::flash('error', 'Users Gagal Diubah');
-                return redirect('/users');
+
+                return redirect('/users')->with('success', 'Users Berhasil Diubah');
+            } else {
+
+                return redirect('/users')->with('error', 'Users Gagal Diubah');
             }
         }
     }
 
-    public function deleteUsers($id){
+    public function deleteUsers($id)
+    {
         $deleteUsers = DB::table('users')
-                        ->where('id', $id)
-                        ->delete();
+            ->where('id', $id)
+            ->delete();
         if ($deleteUsers) {
-            Session::flash('success', 'Users Berhasil Diubah');
-            return redirect('/users');
-        }else{
-            Session::flash('error', 'Users Gagal Diubah');
-            return redirect('/users');
+
+            return redirect('/users')->with('success', 'Users Berhasil Diubah');
+        } else {
+
+            return redirect('/users')->with('error', 'Users Gagal Diubah');
         }
     }
 }

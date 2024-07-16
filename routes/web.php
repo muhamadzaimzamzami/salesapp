@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('actionlogin', [LoginController::class, 'login'])->name('actionlogin');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('loginform');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -25,23 +25,9 @@ Route::middleware('auth')->group(function(){
     Route::post('/lobi/checkin', [AbsentController::class, 'checkin'])->name('checkin');
     Route::post('/lobi/chekout', [AbsentController::class, 'checkout'])->name('checkout');
 
-    // Sales TO
-    Route::get('/pesanan', [OrderController::class, 'index'])->name('pesanan');
-    Route::get('/produk-toko', [OrderController::class, 'storeProduct'])->name('produktoko');
-    Route::get('/tambah-pesanan', [OrderController::class, 'addOrder'])->name('tambahpesanan');
-    Route::post('/create-pesanan', [OrderController::class, 'createOrder'])->name('createpesanan');
-    Route::get('/detail-pesanan/{no_pesanan}', [OrderController::class, 'detailOrder'])->name('detailpesanan');
-    Route::post('/update-stok', [OrderController::class, 'updateStock'])->name('updatestok');
-    Route::post('/selesaikan-order', [OrderController::class, 'finishedOrder'])->name('selesaikanorder');
+});
 
-    //Sales Merch
-    Route::get('/penjualan', [SalesController::class, 'index'])->name('penjualan');
-    Route::get('/tambah-penjualan', [SalesController::class, 'addSales'])->name('tambahpenjualan');
-    Route::post('/create-penjualan', [SalesController::class, 'createSales'])->name('createpenjualan');
-    Route::get('/edit-penjualan/{id}', [SalesController::class, 'editSales'])->name('editpenjualan');
-    Route::post('/update-penjualan', [SalesController::class, 'updateSales'])->name('updatepenjualan');
-    Route::get('/hapus-penjualan/{id}', [SalesController::class, 'deleteSales'])->name('deletepenjualan');
-    
+Route::middleware(['isAdmin'])->group(function(){
     //Master
     Route::get('/produk', [ProductController::class, 'index']);
     Route::get('/tambah-produk', [ProductController::class, 'addProduct']);
@@ -68,21 +54,25 @@ Route::middleware('auth')->group(function(){
     Route::post('/getlaporan', [ReportController::class, 'getReport'])->name('getlaporan');
     Route::get('/getexcel', [ReportController::class, 'exportExcel'])->name('getexcel');
 });
+Route::middleware(['IsSalesMerch'])->group(function(){
+    //Sales Merch
+    Route::get('/penjualan', [SalesController::class, 'index'])->name('penjualan');
+    Route::get('/tambah-penjualan', [SalesController::class, 'addSales'])->name('tambahpenjualan');
+    Route::post('/create-penjualan', [SalesController::class, 'createSales'])->name('createpenjualan');
+    Route::get('/edit-penjualan/{id}', [SalesController::class, 'editSales'])->name('editpenjualan');
+    Route::post('/update-penjualan', [SalesController::class, 'updateSales'])->name('updatepenjualan');
+    Route::get('/hapus-penjualan/{id}', [SalesController::class, 'deleteSales'])->name('deletepenjualan');
+});
+Route::middleware(['IsSalesTo'])->group(function(){
+    Route::get('/pesanan', [OrderController::class, 'index'])->name('pesanan');
+    Route::get('/produk-toko', [OrderController::class, 'storeProduct'])->name('produktoko');
+    Route::get('/tambah-pesanan', [OrderController::class, 'addOrder'])->name('tambahpesanan');
+    Route::post('/create-pesanan', [OrderController::class, 'createOrder'])->name('createpesanan');
+    Route::get('/detail-pesanan/{no_pesanan}', [OrderController::class, 'detailOrder'])->name('detailpesanan');
+    Route::post('/update-stok', [OrderController::class, 'updateStock'])->name('updatestok');
+    Route::post('/selesaikan-order', [OrderController::class, 'finishedOrder'])->name('selesaikanorder');
+});
 
-
-// Route::middleware(['auth', 'checkRole:2'])->group(function () {
-//     Route::get('/', [DashboardController::class, 'index'])->name('sales.dashboard');
-//     Route::get('/lobi', [DashboardController::class, 'index'])->name('lobi');
-//     Route::get('/pesanan', [DashboardController::class, 'index'])->name('pesanan');
-//     Route::get('/penjualan', [DashboardController::class, 'index'])->name('penjualan');
-// });
-
-// Route::middleware(['auth', 'checkRole:1'])->group(function () {
-//     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-//     Route::get('/produk', [ProductController::class, 'index']);
-//     Route::get('/toko', [StoreController::class, 'index']);
-//     Route::get('/users', [UserController::class, 'index']);
-// });
 
 
 

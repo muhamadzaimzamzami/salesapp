@@ -29,6 +29,15 @@
                 <h3 class="text-center m-t-0 m-b-30">
                     <span class=""><img src="{{ asset('assets/images/logo_n.png') }}" alt="logo" height="100"></span>
                 </h3>
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                
                 <h4 class="text-muted text-center m-t-0"><b>Sign In</b></h4>
 
                 <form method="post" action="{{ route('actionlogin') }}"  class="form-horizontal m-t-20">

@@ -95,7 +95,7 @@ class OrderController extends Controller
                 );
         }
 
-        return redirect('/pesanan');
+        return redirect('/pesanan')->with('success', 'Berhasil Membuat Pesanan');
     }
 
     public function detailOrder($no_pesanan){
@@ -162,7 +162,7 @@ class OrderController extends Controller
                                 ->where('id', $id_order)
                                 ->update(['status' => 2]);
         if ($updateStatus) {
-            return redirect('/detail-pesanan/'.$id_order);
+            return redirect('/detail-pesanan/'.$id_order)->with('success','Berhasil Menyelesaikan Pesanan.');
         }
 
     }
@@ -175,6 +175,6 @@ class OrderController extends Controller
               ->where('id', $id_productStore)
               ->update(['stock' => $newStock]);
         
-        return redirect('/produk-toko');
+        return redirect('/produk-toko')->with('success', 'Berhasil Merubah stok.');
     }
 }   

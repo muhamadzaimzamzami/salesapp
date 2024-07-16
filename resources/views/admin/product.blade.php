@@ -26,6 +26,14 @@
                             <h3 class="panel-title">Tabel Penjualan</h3>
                         </div>
                         <div class="panel-body">
+                            @if(session('success'))
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                             <a href="/tambah-produk" class="btn btn-success">Tambah Product</a><br><br>
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
                                 cellspacing="0" width="100%">

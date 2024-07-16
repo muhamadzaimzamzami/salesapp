@@ -36,13 +36,13 @@ class LoginController extends FunctionController
             return redirect()->intended('/dashboard');
         }
 
-        return redirect('/')->withErrors('Login details are not valid');
+        return redirect('/')->with('error', 'Username atau Password anda salah!');
     }
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('loginform');
+        return redirect()->route('login');
     }
 }
