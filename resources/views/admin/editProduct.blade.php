@@ -1,86 +1,84 @@
 @extends('../master')
 @section('title')
-    Sales App
+Sales App
 @endsection
 
 @section('content')
-    <div class="content">
-        <div class="container">
+<div class="content">
+    <div class="container">
 
-            <!-- Page-Title -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="page-header-title">
-                        <h4 class="pull-left page-title">Produk</h4>
-                        <ol class="breadcrumb pull-right">
-                            <li class="active">Produk</li>
-                        </ol>
-                        <div class="clearfix"></div>
-                    </div>
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-header-title">
+                    <h4 class="pull-left page-title">Produk</h4>
+                    <ol class="breadcrumb pull-right">
+                        <li class="active">Produk</li>
+                    </ol>
+                    <div class="clearfix"></div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Edit Produk</h3>
-                        </div>
-                        <div class="panel-body">
-                            <form action="{{route('updateproduct')}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <input type="hidden" name="id_product" value="{{$dataProduct->id}}">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Nama Produk</label>
-                                            <input type="text" name="product_name" class="form-control" id="" value="{{$dataProduct->product_name}}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Barcode</label>
-                                            <input type="number" name="barcode" class="form-control" id="" value="{{$dataProduct->barcode}}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Berat Bersih(gram)</label>
-                                            <input type="text" name="weight" class="form-control" id="" value="{{$dataProduct->weight}}" required>
-                                        </div>
-
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Edit Produk</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{route('updateproduct')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <input type="hidden" name="id_product" value="{{$dataProduct->id}}">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nama Produk</label>
+                                        <input type="text" name="product_name" class="form-control" id="" value="{{$dataProduct->product_name}}" required>
                                     </div>
-                                    <div class="col-md-6 col-sm-12">
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Harga(pcs)</label>
-                                            <input type="number" name="price_pcs" id="" class="form-control" value="{{$dataProduct->price_onpieces}}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Stok(pcs)</label>
-                                            <input type="number" name="stock" id="" class="form-control" value="{{$dataProduct->stock}}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Foto Produk</label>
-                                            <br>
-                                            <img src="{{ asset($dataProduct->image) }}" alt="gambar produk" srcset="" width="100">
-                                            <input type="hidden" name="old_image" id="" class="form-control" value="{{$dataProduct->image}}" required>
-                                            <input type="file" name="image" id="" class="form-control">
-                                        </div>
-                                        
-
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Barcode</label>
+                                        <input type="number" name="barcode" class="form-control" id="" value="{{$dataProduct->barcode}}" required>
                                     </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Berat Bersih(gram)</label>
+                                        <input type="text" name="weight" class="form-control" id="" value="{{$dataProduct->weight}}" required>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Harga(pcs)</label>
+                                        <input type="number" name="price_pcs" id="" class="form-control" value="{{$dataProduct->price_onpieces}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Stok(pcs)</label>
+                                        <input type="number" name="stock" id="" class="form-control" value="{{$dataProduct->stock}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Foto Produk</label>
+                                        <br>
+                                        <img src="{{ asset($dataProduct->image) }}" alt="gambar produk" srcset="" width="100">
+                                        <input type="hidden" name="old_image" id="" class="form-control" value="{{$dataProduct->image}}" required>
+                                        <input type="file" name="image" id="" class="form-control">
                                     </div>
                                 </div>
-                            </form>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </form>
 
-                        </div>
                     </div>
                 </div>
-
             </div>
 
+        </div>
 
-        </div> <!-- container -->
 
-    </div>
+    </div> <!-- container -->
+
+</div>
 @endsection
 
 @section('script')

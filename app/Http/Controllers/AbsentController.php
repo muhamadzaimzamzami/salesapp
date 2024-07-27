@@ -17,26 +17,26 @@ class AbsentController extends FunctionController
         $today = Carbon::today();
         if (session('role') == 1) {
             $absensi = DB::table('t_absent')
-                            ->select('t_absent.*', 'm_store.name', 'users.fullname')
-                            ->join('m_store', 't_absent.id_store', '=', 'm_store.id')
-                            ->join('users','t_absent.id_users','=','users.id')
-                            ->whereDate('t_absent.created_at', '=', $today)
-                            ->get();
+                ->select('t_absent.*', 'm_store.name', 'users.fullname')
+                ->join('m_store', 't_absent.id_store', '=', 'm_store.id')
+                ->join('users', 't_absent.id_users', '=', 'users.id')
+                ->orderBy('t_absent.created_at', 'desc')
+                // ->whereDate('t_absent.created_at', '=', $today)
+                ->get();
         } else {
             $absensi = DB::table('t_absent')
-                            ->select('t_absent.*', 'm_store.name')
-                            ->join('m_store', 't_absent.id_store', '=', 'm_store.id')
-                            ->where('t_absent.id_users', '=', Auth::user()->id)
-                            ->get();
+                ->select('t_absent.*', 'm_store.name')
+                ->join('m_store', 't_absent.id_store', '=', 'm_store.id')
+                ->where('t_absent.id_users', '=', Auth::user()->id)
+                ->orderBy('t_absent.created_at', 'desc')
+                ->get();
         }
-        
-        
+
+
         $return = [
             "absensi"
         ];
         return view("admin.loby", compact($return));
-
-
     }
 
     public function checkinpage()
@@ -49,9 +49,9 @@ class AbsentController extends FunctionController
     {
         $id_store = $request->toko;
         $idUser = Auth::user()->id;
-        $imageName = time().'.'.$request->photo->extension();
+        $imageName = time() . '.' . $request->photo->extension();
         $request->photo->move(public_path('assets/images/absent'), $imageName);
-        $photo = 'assets/images/absent/'.$imageName;
+        $photo = 'assets/images/absent/' . $imageName;
 
         $insert = DB::table("t_absent")->insert([
             "id_users" => $idUser,

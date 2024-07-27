@@ -62,21 +62,43 @@ class UserController extends Controller
             Session::flash('error', 'Email sudah terdaftar');
             return redirect()->back();
         } else {
-            $udpateUsers = DB::table('users')
-                ->where('id', $data['id_users'])
-                ->update([
-                    'fullname' => $data['fullname'],
-                    'username' => $data['username'],
-                    'email' => $data['email'],
-                    'phone' => $data['phone'],
-                    'level' => $data['role'],
-                ]);
-            if ($udpateUsers) {
+            if ($data['password'] == "") {
+                $udpateUsers = DB::table('users')
+                    ->where('id', $data['id_users'])
+                    ->update([
+                        'fullname' => $data['fullname'],
+                        'username' => $data['username'],
+                        'email' => $data['email'],
+                        'phone' => $data['phone'],
+                        'level' => $data['role'],
+                    ]);
 
-                return redirect('/users')->with('success', 'Users Berhasil Diubah');
+                if ($udpateUsers) {
+
+                    return redirect('/users')->with('success', 'Users Berhasil Diubah');
+                } else {
+
+                    return redirect('/users')->with('error', 'Users Gagal Diubah');
+                }
             } else {
+                $udpateUsers = DB::table('users')
+                    ->where('id', $data['id_users'])
+                    ->update([
+                        'fullname' => $data['fullname'],
+                        'username' => $data['username'],
+                        'email' => $data['email'],
+                        'password' => Hash::make($data['password']),
+                        'phone' => $data['phone'],
+                        'level' => $data['role'],
+                    ]);
 
-                return redirect('/users')->with('error', 'Users Gagal Diubah');
+                if ($udpateUsers) {
+
+                    return redirect('/users')->with('success', 'Users Berhasil Diubah');
+                } else {
+
+                    return redirect('/users')->with('error', 'Users Gagal Diubah');
+                }
             }
         }
     }

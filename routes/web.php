@@ -16,7 +16,7 @@ Route::post('actionlogin', [LoginController::class, 'login'])->name('actionlogin
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Absensi
@@ -32,10 +32,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/edit-toko/{id}', [StoreController::class, 'editStore'])->name('edittoko');
     Route::post('/update-toko', [StoreController::class, 'updateStore'])->name('updatetoko');
     Route::get('/hapus-toko/{id}', [StoreController::class, 'deleteStore'])->name('deletetoko');
-
 });
 
-Route::middleware(['isAdmin'])->group(function(){
+Route::middleware(['isAdmin'])->group(function () {
     //Master
     Route::get('/produk', [ProductController::class, 'index']);
     Route::get('/tambah-produk', [ProductController::class, 'addProduct']);
@@ -43,7 +42,7 @@ Route::middleware(['isAdmin'])->group(function(){
     Route::get('/edit-produk/{id}', [ProductController::class, 'editProduct'])->name('editproduct');
     Route::post('/update-produk', [ProductController::class, 'updateProduct'])->name('updateproduct');
     Route::get('/hapus-produk/{id}', [ProductController::class, 'deleteProduct'])->name('deleteproduct');
-    
+
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/tambah-users', [UserController::class, 'addUsers']);
     Route::post('/create-users', [UserController::class, 'createUsers'])->name('createusers');
@@ -57,7 +56,7 @@ Route::middleware(['isAdmin'])->group(function(){
     Route::post('/getlaporan', [ReportController::class, 'getReport'])->name('getlaporan');
     Route::get('/getexcel', [ReportController::class, 'exportExcel'])->name('getexcel');
 });
-Route::middleware(['IsSalesMerch'])->group(function(){
+Route::middleware(['IsSalesMerch'])->group(function () {
     //Sales Merch
     Route::get('/penjualan', [SalesController::class, 'index'])->name('penjualan');
     Route::get('/tambah-penjualan', [SalesController::class, 'addSales'])->name('tambahpenjualan');
@@ -66,7 +65,7 @@ Route::middleware(['IsSalesMerch'])->group(function(){
     Route::post('/update-penjualan', [SalesController::class, 'updateSales'])->name('updatepenjualan');
     Route::get('/hapus-penjualan/{id}', [SalesController::class, 'deleteSales'])->name('deletepenjualan');
 });
-Route::middleware(['IsSalesTo'])->group(function(){
+Route::middleware(['IsSalesTo'])->group(function () {
     Route::get('/pesanan', [OrderController::class, 'index'])->name('pesanan');
     Route::get('/produk-toko', [OrderController::class, 'storeProduct'])->name('produktoko');
     Route::get('/tambah-pesanan', [OrderController::class, 'addOrder'])->name('tambahpesanan');
@@ -75,7 +74,3 @@ Route::middleware(['IsSalesTo'])->group(function(){
     Route::post('/update-stok', [OrderController::class, 'updateStock'])->name('updatestok');
     Route::post('/selesaikan-order', [OrderController::class, 'finishedOrder'])->name('selesaikanorder');
 });
-
-
-
-
