@@ -93,11 +93,17 @@ class SalesController extends FunctionController
     }
 
     public function editSales($id){
+        $getIdToko = DB::table('t_sales_merch')
+                        ->select('id_store')
+                        ->where('id', $id)
+                        ->first();
+                        // dd($getIdToko);
         $productStore = DB::table("t_product_store")
                         ->select("t_product_store.*", "m_product.product_name")
                         ->join("m_product", "t_product_store.id_product", "m_product.id")
-                        ->where("t_product_store.id_store", session('id_store'))
+                        ->where("t_product_store.id_store", $getIdToko->id_store)
                         ->get();
+                        // dd($productStore);
         $dataPenjualan = DB::table('t_sales_merch')
                         ->where('id', $id)
                         ->first();

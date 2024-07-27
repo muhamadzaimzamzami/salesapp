@@ -45,21 +45,24 @@
                     @endif
                 @endif
 
-                
+                <li>
+                    <a href="/toko" class="waves-effect"><i class="mdi mdi-exit-to-app"></i><span> Toko
+                        </span></a>
+                </li>
 
                 @if(Auth::user()->level == 1)
                 <li>
+                    <a href="/produk" class="waves-effect"><i class="mdi mdi-dropbox"></i><span> Master Produk
+                        </span></a>
+                </li>
+                <li>
+                    <a href="/users" class="waves-effect"><i class="mdi mdi-account-multiple"></i><span> Users Management
+                        </span></a>
+                </li>
+                <li>
                     <a href="/laporan" class="waves-effect"><i class="mdi mdi-book-multiple"></i><span> Report </span></a>
                 </li>
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-folder-outline"></i> <span> Master Data
-                        </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
-                    <ul class="list-unstyled">
-                        <li><a href="/toko">Toko</a></li>
-                        <li><a href="/produk">Produk</a></li>
-                        <li><a href="/users">Users</a></li>
-                    </ul>
-                </li>
+                
                 @endif
                 
             </ul>

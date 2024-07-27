@@ -25,6 +25,14 @@ Route::middleware('auth')->group(function(){
     Route::post('/lobi/checkin', [AbsentController::class, 'checkin'])->name('checkin');
     Route::post('/lobi/chekout', [AbsentController::class, 'checkout'])->name('checkout');
 
+    //Toko
+    Route::get('/toko', [StoreController::class, 'index']);
+    Route::get('/tambah-toko', [StoreController::class, 'addStore']);
+    Route::post('/create-toko', [StoreController::class, 'createStore'])->name('createtoko');
+    Route::get('/edit-toko/{id}', [StoreController::class, 'editStore'])->name('edittoko');
+    Route::post('/update-toko', [StoreController::class, 'updateStore'])->name('updatetoko');
+    Route::get('/hapus-toko/{id}', [StoreController::class, 'deleteStore'])->name('deletetoko');
+
 });
 
 Route::middleware(['isAdmin'])->group(function(){
@@ -35,12 +43,7 @@ Route::middleware(['isAdmin'])->group(function(){
     Route::get('/edit-produk/{id}', [ProductController::class, 'editProduct'])->name('editproduct');
     Route::post('/update-produk', [ProductController::class, 'updateProduct'])->name('updateproduct');
     Route::get('/hapus-produk/{id}', [ProductController::class, 'deleteProduct'])->name('deleteproduct');
-    Route::get('/toko', [StoreController::class, 'index']);
-    Route::get('/tambah-toko', [StoreController::class, 'addStore']);
-    Route::post('/create-toko', [StoreController::class, 'createStore'])->name('createtoko');
-    Route::get('/edit-toko/{id}', [StoreController::class, 'editStore'])->name('edittoko');
-    Route::post('/update-toko', [StoreController::class, 'updateStore'])->name('updatetoko');
-    Route::get('/hapus-toko/{id}', [StoreController::class, 'deleteStore'])->name('deletetoko');
+    
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/tambah-users', [UserController::class, 'addUsers']);
     Route::post('/create-users', [UserController::class, 'createUsers'])->name('createusers');
